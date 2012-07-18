@@ -15,13 +15,14 @@ function Tuple (fields) {
 	}
 
 	
-	// this.names = {};
+	this.names = {};
 
-	// for (var i = 0; i < fields.length; i++) {
-	// 	this.names[fields[i].name] = i;
-	// }
+	for (var i = 0; i < fields.length; i++) {
+		this.names[fields[i].name] = i;
+	}
 
 	this.addField = function (field) {
+		this.names[field.name] = this.fields.length;
 		this.fields.push(field);
 	};
 
@@ -30,11 +31,7 @@ function Tuple (fields) {
 	};
 
 	this.getField = function (fieldName) {
-		for (var i = 0; i < this.fields.length; i++) {
-			if (this.fields[i].name == fieldName)
-				return this.fields[i];
-		}
-		return null;
+		return this.fields[this.names[fieldName]];
 	};
 
 	this.getI = function (i) {
